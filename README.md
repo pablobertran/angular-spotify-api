@@ -1,8 +1,40 @@
-# AngularSpotifyApi
+# angular-spotify-api
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.7.
+A component library that helps you interact with the [Spotify API Beta](https://developer.spotify.com/documentation/web-api/reference-beta/)
 
-## Development server
+#demo
+
+[![NPM](https://img.shields.io/npm/v/react-spotify-api.svg)](https://www.npmjs.com/package/react-spotify-api)
+[![Build Status](https://travis-ci.com/idanlo/react-spotify-api.svg?branch=master)](https://travis-ci.com/idanlo/react-spotify-api)
+[![Dependencies](https://david-dm.org/idanlo/react-spotify-api/status.svg)](https://david-dm.org/idanlo/react-spotify-api)
+[![Dev Dependencies](https://david-dm.org/idanlo/react-spotify-api/dev-status.svg)](https://david-dm.org/idanlo/react-spotify-api?type=dev)
+[![Peer Dependencies](https://david-dm.org/idanlo/react-spotify-api/peer-status.svg)](https://david-dm.org/idanlo/react-spotify-api?type=peer)
+![Codecov](https://img.shields.io/codecov/c/github/idanlo/react-spotify-api.svg)
+[![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/react-spotify-api.svg)](https://www.npmjs.com/package/react-spotify-api)
+[![GitHub](https://img.shields.io/github/license/idanlo/react-spotify-api.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/prs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+## Usage
+
+Install angular-spotify-api via 
+```
+npm install pablobertran/angular-spotify-api --save
+```
+
+Import module on your app.module.ts file:
+```
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  imports: [AngularSpotifyApiModule],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 

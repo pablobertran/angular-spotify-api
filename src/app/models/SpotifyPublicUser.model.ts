@@ -1,15 +1,14 @@
+import {SpotifyExternalUrlModel} from './SpotifyExternalUrl.model';
 import {SpotifyFollowersModel} from './SpotifyFollowers.model';
 import {SpotifyImageModel} from './SpotifyImage.model';
 
-export interface SpotifyArtistModel {
-  external_urls: any;
+export interface SpotifyPublicUserModel {
+  display_name: string;
+  external_urls: SpotifyExternalUrlModel;
   followers: SpotifyFollowersModel;
-  genres: string[];
   href: string;
   id: string;
   images: SpotifyImageModel[];
-  name: string;
-  popularity: number;
   type: string;
   uri: string;
 }

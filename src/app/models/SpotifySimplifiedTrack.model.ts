@@ -3,7 +3,7 @@ import {SpotifyExternalUrlModel} from './SpotifyExternalUrl.model';
 import {SpotifyLinkedTrackModel} from './SpotifyLinkedTrack.model';
 
 export interface SpotifySimplifiedTrackModel {
-  artists: SpotifySimplifiedArtistModel[]; // fix
+  artists: SpotifySimplifiedArtistModel[];
   available_markets: string[];
   disc_number: number;
   duration_ms: number;

@@ -1,14 +1,19 @@
+import {SpotifyImageModel} from './SpotifyImage.model';
+import {SpotifyExternalUrlModel} from './SpotifyExternalUrl.model';
+import {SpotifyPublicUserModel} from './SpotifyPublicUser.model';
+import {SpotifyPlaylistTrackModel} from './SpotifyPlaylistTrack.model';
+
 export interface SpotifyPlaylistModel {
   collaborative: boolean;
-  external_urls: any; // fix
+  external_urls: SpotifyExternalUrlModel;
   href: string;
   id: string;
-  images: any[]; // fix
+  images: SpotifyImageModel[];
   name: string;
-  owner: any; // fix
+  owner: SpotifyPublicUserModel;
   public: boolean;
   snapshot_id: string;
-  tracks: any; // fix
+  tracks: SpotifyPlaylistTrackModel;
   type: string;
   uri: string;
 }

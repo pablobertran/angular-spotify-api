@@ -6,29 +6,31 @@ import {SpotifySettingsProvider} from '../providers/spotify-settings.provider';
 
 @Injectable()
 export class SpotifyAlbumsRequest {
+  private baseURL: string;
   constructor(private http: HttpClient,
               private settings: SpotifySettingsProvider) {
+    this.baseURL = `${this.settings.getSetting('uri')}/albums/`;
   }
 
   query(): Observable<SpotifyJsonResponseModel> {
-    const url = `${this.settings.getSetting('uri')}/albums/`;
-    return this.http.get<SpotifyJsonResponseModel>(url);
+    return this.http.get<SpotifyJsonResponseModel>(this.baseURL);
   }
 
   get(id: string, market?: string): Observable<SpotifyJsonResponseModel> {
     const params = market ? `?market=${market}` : null;
-    const url = `${this.settings.getSetting('uri')}/albums/${id}${params}`;
+    const url = `${this.baseURL}${id}${params}`;
     return this.http.get<SpotifyJsonResponseModel>(url);
   }
 
   getTracks(id: string, limit?: string, offset?: string, market?: string): Observable<SpotifyJsonResponseModel> {
-    let params = [
+    const params = [
       {label: 'limit', value: limit},
       {label: 'offset', value: offset},
       {label: 'market', value: market}
-      ].filter( el => el.value != null);
-    // params = params.reduce() // TODO -> build params string
-    const url = `${this.settings.getSetting('uri')}/albums/${id}/tracks${params}`;
+      ].filter( el => el.value != null).reduce((a, b) => {
+      return a + b.label + '=' + b.value;
+    }, '?');
+    const url = `${this.baseURL}${id}/tracks${params}`;
     return this.http.get<SpotifyJsonResponseModel>(url);
   }
 }

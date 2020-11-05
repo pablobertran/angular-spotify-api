@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {SpotifySettingsProvider} from '../providers/spotify-settings.provider';
 import {Observable} from 'rxjs';
 import {SpotifyJsonResponseModel} from '../models/SpotifyJsonResponse.model';
@@ -12,21 +12,21 @@ export class SpotifyPlaylistsRequest {
 
   getCurrentUserPlaylists(limit?: number, offset?: number): Observable<SpotifyJsonResponseModel> {
     const url = `${this.settings.getSetting('uri')}/me/playlists/`;
+    const params = new HttpParams();
+    params.set('limit', limit + '');
+    params.set('offset', offset + '');
     return this.http.get<SpotifyJsonResponseModel>(url, {
-      params: {
-        limit,
-        offset
-      }
+      params
     });
   }
 
   getUserPlaylists(userId: string, limit?: number, offset?: number): Observable<SpotifyJsonResponseModel> {
     const url = `${this.settings.getSetting('uri')}/users/${userId}/playlists/`;
+    const params = new HttpParams();
+    params.set('limit', limit + '');
+    params.set('offset', offset + '');
     return this.http.get<SpotifyJsonResponseModel>(url, {
-      params: {
-        limit,
-        offset
-      }
+      params
     });
   }
 
@@ -74,14 +74,14 @@ export class SpotifyPlaylistsRequest {
                    offset?: string,
                    additionalTypes?: string): Observable<SpotifyJsonResponseModel> {
     const url = `${this.settings.getSetting('uri')}/playlists/${playlistId}/tracks`;
+    const params = new HttpParams();
+    params.set('limit', limit + '');
+    params.set('offset', offset );
+    params.set('market', market);
+    params.set('fields', fields);
+    params.set('additionalTypes', additionalTypes);
     return this.http.get<SpotifyJsonResponseModel>(url, {
-      params: {
-        market,
-        fields,
-        limit,
-        offset,
-        additional_types: additionalTypes
-      }
+      params
     });
   }
 

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {SpotifySettingsProvider} from '../providers/spotify-settings.provider';
 import {Observable} from 'rxjs';
 import {SpotifyJsonResponseModel} from '../models/SpotifyJsonResponse.model';
@@ -98,7 +98,11 @@ export class SpotifyPlayerRequest {
 
   getRecentlyPlayed(limit?: number, after?: number, before?: number): Observable<any> {
     const url = `${this.settings.getSetting('uri')}/me/player/recently-played`;
-    return this.http.get<any>(url, { params: {limit, after, before}});
+    const params = new HttpParams();
+    params.set('limit', limit + '');
+    params.set('after', after + '');
+    params.set('before', before + '');
+    return this.http.get<any>(url, {params});
   }
 
   getCurrentPlayback(market: string, additionalTypes?: string): Observable<SpotifyJsonResponseModel> {
